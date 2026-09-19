@@ -1,0 +1,1 @@
+export default function NotFound(){return <main className="min-h-[70vh] grid place-items-center text-center px-6"><div><div className="text-7xl">🍦</div><h1 className="display text-7xl mt-4">OH NO!</h1><p className="mt-4">Looks like this scoop melted away.</p><a href="/" className="inline-block mt-8 bg-[#2c211d] text-white px-7 py-4 rounded-full">BACK HOME</a></div></main>}

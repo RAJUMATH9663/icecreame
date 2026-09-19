@@ -1,0 +1,21 @@
+export type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  price: number;
+  emoji: string;
+  category: "fruit" | "chocolate" | "premium" | "seasonal" | "classic" | string;
+  rating: number;
+  reviewsCount?: number;
+  tag?: string;
+  color?: string;
+  accentBg?: string;
+  bgPastel?: string;
+  calories?: number;
+  notes?: string[];
+  toppings?: string[];
+  badgeColor?: string;
+  isBestseller?: boolean;
+  isSeasonal?: boolean;
+};

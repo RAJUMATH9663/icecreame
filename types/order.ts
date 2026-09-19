@@ -1,0 +1,1 @@
+export type OrderStatus = "pending"|"confirmed"|"preparing"|"out_for_delivery"|"delivered"|"cancelled"; export type Order = { id:string; items:unknown[]; subtotal:number; discount:number; deliveryFee:number; total:number; status:OrderStatus; createdAt:string; };
