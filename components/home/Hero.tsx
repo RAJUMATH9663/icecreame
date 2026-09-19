@@ -4,6 +4,7 @@ import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from
 import Link from "next/link";
 import { useState, useRef, MouseEvent } from "react";
 import { Sparkles, ArrowRight, Star, Heart, Award, Flame } from "lucide-react";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const HERO_HEROES = [
   {
@@ -190,30 +191,34 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Action CTA Buttons */}
+          {/* Action CTA Buttons with Magnetic Physics */}
           <motion.div
             className="flex flex-wrap items-center gap-4 pt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <Link
-              href="/flavors"
-              className="group relative inline-flex items-center gap-3 bg-[#2c211d] text-[#fffaf2] px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase overflow-hidden shadow-2xl transition-all duration-300 hover:bg-[#4a3832] hover:shadow-pink-500/20"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Explore All Flavors
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-amber-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-            </Link>
+            <MagneticButton strength={25}>
+              <Link
+                href="/flavors"
+                className="group relative inline-flex items-center gap-3 bg-[#2c211d] text-[#fffaf2] px-8 py-4 rounded-full font-bold text-sm tracking-wider uppercase overflow-hidden shadow-2xl transition-all duration-300 hover:bg-[#4a3832]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Explore All Flavors
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-amber-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              </Link>
+            </MagneticButton>
 
-            <Link
-              href="/cart"
-              className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full font-bold text-sm tracking-wider uppercase glass-panel border border-[#2c211d]/20 text-[#2c211d] hover:bg-white transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
-            >
-              <span>🍦 Build Your Cone</span>
-            </Link>
+            <MagneticButton strength={25}>
+              <Link
+                href="/cart"
+                className="inline-flex items-center gap-2.5 px-7 py-4 rounded-full font-bold text-sm tracking-wider uppercase glass-panel border border-[#2c211d]/20 text-[#2c211d] hover:bg-white transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+              >
+                <span>🍦 Build Your Cone</span>
+              </Link>
+            </MagneticButton>
           </motion.div>
 
           {/* Social Proof Overlapping Row */}
@@ -290,7 +295,7 @@ export function Hero() {
                   </button>
                 </div>
 
-                {/* Main 3D Floating Scoop Centerpiece */}
+                {/* Main 3D Floating Scoop Centerpiece with Drag gesture */}
                 <div className="relative my-auto flex flex-col items-center justify-center">
                   {/* Floating shadow under emoji */}
                   <motion.div
@@ -302,9 +307,12 @@ export function Hero() {
                     className="w-36 h-8 bg-black/20 rounded-full blur-md -mb-6"
                   />
 
-                  {/* Giant 3D Scoop Emoji with Bounce and Floating Physics */}
+                  {/* Giant 3D Scoop Emoji with Bounce and Interactive Drag */}
                   <motion.div
                     key={`emoji-${activeFlavor.id}`}
+                    drag
+                    dragConstraints={{ left: -30, right: 30, top: -30, bottom: 30 }}
+                    dragElastic={0.4}
                     initial={{ y: 30, scale: 0.8, rotate: -15 }}
                     animate={{
                       y: [0, -18, 0],
@@ -316,7 +324,7 @@ export function Hero() {
                       rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
                       scale: { duration: 0.5 },
                     }}
-                    className="text-[9rem] md:text-[10.5rem] leading-none filter drop-shadow-2xl translate-z-60 cursor-pointer"
+                    className="text-[9rem] md:text-[10.5rem] leading-none filter drop-shadow-2xl translate-z-60 cursor-grab active:cursor-grabbing select-none"
                   >
                     {activeFlavor.secondEmoji}
                   </motion.div>
@@ -328,7 +336,7 @@ export function Hero() {
                       rotate: [0, -12, 12, 0],
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-4 -right-4 text-5xl filter drop-shadow-lg"
+                    className="absolute -top-4 -right-4 text-5xl filter drop-shadow-lg pointer-events-none"
                   >
                     {activeFlavor.emoji}
                   </motion.div>

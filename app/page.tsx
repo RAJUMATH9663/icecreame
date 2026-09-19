@@ -5,6 +5,7 @@ import { ScoopStacker3D } from "@/components/home/ScoopStacker3D";
 import { FeaturedFlavors } from "@/components/home/FeaturedFlavors";
 import { BrandStory } from "@/components/home/BrandStory";
 import { Ingredients } from "@/components/home/Ingredients";
+import { TasteQuiz3D } from "@/components/home/TasteQuiz3D";
 import { SeasonalCollection } from "@/components/home/SeasonalCollection";
 import { Newsletter } from "@/components/home/Newsletter";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <FeaturedFlavors />
       <BrandStory />
       <Ingredients />
+      <TasteQuiz3D />
       <SeasonalCollection />
       <Newsletter />
     </main>
